@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  rembg-api:
+    build: .
+    container_name: rembg-app
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - rembg_uploads:/app/uploads
+      - rembg_results:/app/results
+    environment:
+      - MAX_UPLOAD_SIZE=10485760  # 10MB
+      - TIMEOUT=30
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+        reservations:
+          memory: 512M
+
+volumes:
+  rembg_uploads:
+  rembg_results:
