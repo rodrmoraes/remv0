@@ -1,6 +1,7 @@
-fastapi
-uvicorn
-rembg
-onnxruntime
-pillow
-python-multipart
+rembg==2.0.57
+pillow>=9.0.0
+onnxruntime>=1.14.0
+fastapi>=0.100.0
+uvicorn>=0.23.0
+python-multipart>=0.0.6
+aiofiles>=23.0.0
